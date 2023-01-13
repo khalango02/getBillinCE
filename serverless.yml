@@ -1,0 +1,21 @@
+
+
+service: getBill
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.9
+  iam:
+    role:
+      statements:
+        - Effect: 'Allow'
+          Action: 'ce:*'
+          Resource: '*'
+
+functions:
+  getBill:
+    handler: handler.getBill
+    events:
+      - schedule: cron(59 23 * * ? *)
